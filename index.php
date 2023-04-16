@@ -60,32 +60,25 @@ if ($total >= 1) {
 </table>
 <nav aria-label="...">
   <ul class="pagination Page navigation">
-    <li class="page-item disabled">
       <?php
-      $actual = $_GET['pagina'];
+      $actual = intval($_GET['pagina']);
       if($actual==1) { 
-        echo '<li class="page-item disabled"><a class="page-link" aria-disabled="true" href="#">Previous</a></li>';
+        echo '<li class="page-item disabled"><a class="page-link" aria-disabled="true" href="#">Anterior</a></li>';
          } else { 
             $pgb = $actual - 1; 
-            echo '<li class="page-item"><a class="page-link" href="index.php?pagina='.$pgb.'">Previo</a></li>';
+            echo '<li class="page-item"><a class="page-link" href="index.php?pagina='.$pgb.'">Anterior</a></li>';
          }
-         ?>
-    </li>
-    <?php 
-    
-   
     
     for ($i=1; $i<=$total; $i++){
         echo '<li class="page-item"><a class="page-link" href="index.php?pagina='.$i.'">'.$i.'</a></li>';
     }
 
-    $pgn = $actual + 1;
-    if($actual == $tr) {
-        ?>
-    <li class="page-item"><a class="page-link" aria-disabled="true" href="#">Next</a></li>
-    <?php } else {  ?>
-    <li class="page-item"><a class="page-link" href="index.php?pagina=<?php echo $pgn; ?>">Next</a></li>
-    <?php }
+    $pgn = intval($actual) + 1;
+    if($actual == $total) {
+      echo '<li class="page-item disabled"><a class="page-link" aria-disabled="true" href="#">Siguiente</a></li>';
+    } else {  
+      echo '<li class="page-item"><a class="page-link" href="index.php?pagina='.$pgn.'">Siguiente</a></li>';
+     }
     ?>
   </ul>
 </nav>
